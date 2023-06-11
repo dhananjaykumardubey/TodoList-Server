@@ -10,7 +10,11 @@ import (
 func main() {
 	log.Println("Hello, World!")
 
-	db.InitDatabase()
+	err := db.InitDatabase()
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
 	var router = routes.SetUpRouter()
 

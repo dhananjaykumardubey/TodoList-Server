@@ -18,14 +18,16 @@ const (
 	database string = "TODO"
 )
 
-func InitDatabase() {
+func InitDatabase() error {
 	log.Println("Initiating DB")
 
 	var err error
 	DB, err = connectToDatabase()
 	if err != nil {
-		log.Fatal(err)
+		log.Println("Failed connectint to DB")
+		return err
 	}
+	return nil
 }
 
 func connectToDatabase() (*sql.DB, error) {
