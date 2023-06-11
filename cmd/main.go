@@ -2,18 +2,17 @@ package main
 
 import (
 	"log"
-	// "github.com/dhananjaykumardubey/TodoList/internal/handlers"
+
+	"github.com/dhananjaykumardubey/TodoList-Server/internal/db"
+	"github.com/dhananjaykumardubey/TodoList-Server/internal/routes"
 )
 
 func main() {
 	log.Println("Hello, World!")
 
-	db.initDatabase()
+	db.InitDatabase()
 
-	// var router = handlers.setUpRouter()
+	var router = routes.SetUpRouter()
 
-	// log.Println("Routes", router)
-
-	// // Start the API server
-	// log.Fatal(http.ListenAndServe(":8080", router))
+	log.Println("Routes", router)
 }
