@@ -9,19 +9,19 @@ import (
 )
 
 func GetTodo() ([]models.TodoResponseModel, error) {
-	row, err := DB.Query("Select * from TodoList")
+	rows, err := DB.Query("Select * from TodoList")
 	if err != nil {
 		log.Println("Failed to execute the query", err)
 		return nil, err
 	}
-	defer row.Close()
+	defer rows.Close()
 
 	todolist := make([]models.TodoResponseModel, 0)
 
-	for row.Next() {
+	for rows.Next() {
 		var todo models.TodoResponseModel
 		var createdAt time.Time
-		err := row.Scan(&todo.ID, &todo.Title, &todo.Completed, &createdAt)
+		err := rows.Scan(&todo.ID, &todo.Title, &todo.Completed, &createdAt)
 		if err != nil {
 			log.Println("Failed to parse the data", err)
 			return nil, err
